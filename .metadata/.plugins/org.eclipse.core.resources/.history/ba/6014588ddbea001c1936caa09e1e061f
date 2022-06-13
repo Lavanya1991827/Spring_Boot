@@ -1,0 +1,36 @@
+package com.test;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.test.entity.Category;
+import com.test.repository.CaterogryRepository;
+
+@SpringBootApplication
+public class SpringBootJpaApplication  implements CommandLineRunner{
+
+	 @Autowired 
+	  private CaterogryRepository caterogryRepository;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootJpaApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		Category c= new  Category();
+		c.setCategoryName("Vegetables");
+		//caterogryRepository.save(c);
+		Optional<Category> optional = caterogryRepository.findById(1);
+		if (optional.isPresent()) {
+            System.out.println(optional.get());
+        } else {
+            System.out.printf("No employee found with id %d%n", id2);
+        }
+	}
+
+}
